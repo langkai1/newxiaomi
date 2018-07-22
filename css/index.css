@@ -1,8 +1,8 @@
 /*
 * @Author: Administrator
 * @Date:   2018-07-21 15:33:41
-* @Last Modified by:   Administrator
-* @Last Modified time: 2018-07-22 14:17:35
+* @Last Modified by:   langkai1
+* @Last Modified time: 2018-07-22 14:54:54
 */
 @import url(base.css);
 body{
@@ -1294,7 +1294,7 @@ h3{
 	height: 0;
 	background: red;
 	position: absolute;
-	top: 94px;
+	top: 78px;
     left: -303px;
     transition: all .3s ease-out;
     overflow: hidden;
