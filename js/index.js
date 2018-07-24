@@ -5,43 +5,6 @@
 * @Last Modified time: 2018-07-22 13:59:53
 */
 window.onload=function(){
-  /* $("#shouji").mouseenter(function(){
-     $(".daohk").css({"display":"block"});
- }).mouseleave(function(){
-     $(".daohk").css({"display":"none"});
- });*/
-
-  /*$(".gwc").mouseenter(function(){
-     $(".shop").css({"display":"block"});
- }).mouseleave(function(){
-     $(".shop").css({"display":"none"});
- });*/
- /*$("#xmsj1").mouseenter(function(){
-     $("#xmsj").css({"display":"block"});
- }).mouseleave(function(){
-     $("#xmsj").css({"display":"none"});
- });
-  $("#hm1").mouseenter(function(){
-     $("#hm").css({"display":"block"});
- }).mouseleave(function(){
-     $("#hm").css({"display":"none"});
- });
- $("#ds1").mouseenter(function(){
-     $("#ds").css({"display":"block"});
- }).mouseleave(function(){
-     $("#ds").css({"display":"none"});
- });
- $("#bjb1").mouseenter(function(){
-     $("#bjb").css({"display":"block"});
- }).mouseleave(function(){
-     $("#bjb").css({"display":"none"});
- });
-  $("#hz1").mouseenter(function(){
-     $("#hz").css({"display":"block"});
- }).mouseleave(function(){
-     $("#hz").css({"display":"none"});
- });*/
-
  $("#remen1").mouseenter(function(){
      $("#remen").css({"display":"block"});
      $("#chuxing").css({"display":"none"});
@@ -77,23 +40,7 @@ window.onload=function(){
      $("#jiankang").css({"display":"none"});
      $("#kuwan").css({"display":"none"});
  });
-/*
- $("#xp1").mouseenter(function(){
-     $("#xp").css({"display":"block"});
- }).mouseleave(function(){
-     $("#xp").css({"display":"none"});
- });
-  $("#lyq1").mouseenter(function(){
-     $("#lyq").css({"display":"block"});
- }).mouseleave(function(){
-     $("#lyq").css({"display":"none"});
- });
-  $("#znyj1").mouseenter(function(){
-     $("#znyj").css({"display":"block"});
- }).mouseleave(function(){
-     $("#znyj").css({"display":"none"});
- });
-*/
+
   // 倒计时开始
    var second=document.querySelector("#second");
    var nub=second.innerHTML;
@@ -302,9 +249,7 @@ window.onload=function(){
    // 倒计时结束
    // logom 选项卡
   let logo=document.getElementsByClassName("logo1");
-  console.log(logo);
   let lis=document.getElementsByClassName("lis");
-  console.log(lis);
   for (let i = 0; i <logo.length; i++) {
     // console.log(logo[i]);
     logo[i].onmouseenter=function(){
@@ -314,4 +259,89 @@ window.onload=function(){
       lis[i].style.display="block";
      }
     }
-  }
+    function bian(num) {
+        let chanping1=document.getElementsByClassName("chanping1")[num];
+        let li=chanping1.getElementsByTagName("li");
+        let kzq=chanping1.getElementsByClassName("kzq");
+        let dd=chanping1.getElementsByClassName("dd");
+        let flag=true;
+        let now=0;
+        let next=0;
+        let w=parseInt(getComputedStyle(li[0],null).width);
+        function move() {
+            next++;
+            if (next==li.length){
+                now=next-1;
+                next=next-1;
+                return;
+            }
+            for(let i=0;i<dd.length;i++){
+                dd[i].style.background="#b0b0b0";
+                dd[i].style.border=0;
+            }
+            dd[next].style.background="transparent";
+            dd[next].style.border="2px solid #ffac13";
+            li[now].style.left=0;
+            li[next].style.left=w+"px";
+            animate(li[next],{left:0});
+            animate(li[now],{left:-w});
+            now=next;
+        }
+        function movej() {
+            next--;
+            if (next<0){
+                next=0;
+                now=0;
+                return;
+            }
+            for(let i=0;i<dd.length;i++){
+                dd[i].style.background="#b0b0b0";
+                dd[i].style.border=0;
+            }
+            dd[next].style.background="transparent";
+            dd[next].style.border="2px solid #ffac13";
+            li[now].style.left=0;
+            li[next].style.left="-296px";
+            animate(li[next],{left:0});
+            animate(li[now],{left:w});
+            now=next;
+
+        }
+        kzq[0].onclick=function () {
+            movej();
+            console.log(next);
+        }
+        kzq[1].onclick=function () {
+            move();
+        }
+        for(let i=0;i<dd.length;i++){
+            dd[i].onclick=function () {
+                for(let i=0;i<dd.length;i++){
+                    dd[i].style.background="#b0b0b0";
+                    dd[i].style.border=0;
+                }
+                dd[i].style.background="transparent";
+                dd[i].style.border="2px solid #ffac13";
+                if(i==now){
+                    return
+                }
+                if (i>now){
+                    li[i].style.left=w+"px";
+                    li[now].style.left=0;
+                    animate(li[i],{left:0});
+                    animate(li[now],{left:-w});
+                }
+                if (i<now){
+                    li[i].style.left="-296px";
+                    li[now].style.left=0;
+                    animate(li[i],{left:0});
+                    animate(li[now],{left:w});
+                }
+                next=now=i;
+            }
+        }
+    }
+ for (let i=0;i<4;i++){
+      bian(i);
+ }
+}
