@@ -272,9 +272,7 @@ window.onload=function(){
         function move() {
             next++;
             if (next==li.length){
-                now=next-1;
-                next=next-1;
-                return;
+                next=0;
             }
             for(let i=0;i<dd.length;i++){
                 dd[i].style.background="#b0b0b0";
@@ -291,9 +289,7 @@ window.onload=function(){
         function movej() {
             next--;
             if (next<0){
-                next=0;
-                now=0;
-                return;
+                next=dd.length-1;
             }
             for(let i=0;i<dd.length;i++){
                 dd[i].style.background="#b0b0b0";
@@ -310,22 +306,28 @@ window.onload=function(){
         }
         kzq[0].onclick=function () {
             if (flag==false){
-                return
-            }else{
+                return;
+            }if(now==0){
+                return;
+            }
                 flag=false;
                 movej();
                 console.log(next);
-            }
+
 
         }
         kzq[1].onclick=function () {
             if (flag==false){
-                return
-            }else{
+                return;
+            }
+            if (now==dd.length-1){
+                return;
+            }
                 flag=false;
                 move();
                 console.log(next);
-            }
+
+
         }
         for(let i=0;i<dd.length;i++){
             dd[i].onclick=function () {
