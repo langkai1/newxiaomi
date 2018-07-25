@@ -268,6 +268,7 @@ window.onload=function(){
         let now=0;
         let next=0;
         let w=parseInt(getComputedStyle(li[0],null).width);
+
         function move() {
             next++;
             if (next==li.length){
@@ -284,7 +285,7 @@ window.onload=function(){
             li[now].style.left=0;
             li[next].style.left=w+"px";
             animate(li[next],{left:0});
-            animate(li[now],{left:-w});
+            animate(li[now],{left:-w},function () {flag=true});
             now=next;
         }
         function movej() {
@@ -303,16 +304,28 @@ window.onload=function(){
             li[now].style.left=0;
             li[next].style.left="-296px";
             animate(li[next],{left:0});
-            animate(li[now],{left:w});
+            animate(li[now],{left:w},function () {flag=true});
             now=next;
 
         }
         kzq[0].onclick=function () {
-            movej();
-            console.log(next);
+            if (flag==false){
+                return
+            }else{
+                flag=false;
+                movej();
+                console.log(next);
+            }
+
         }
         kzq[1].onclick=function () {
-            move();
+            if (flag==false){
+                return
+            }else{
+                flag=false;
+                move();
+                console.log(next);
+            }
         }
         for(let i=0;i<dd.length;i++){
             dd[i].onclick=function () {
@@ -326,16 +339,29 @@ window.onload=function(){
                     return
                 }
                 if (i>now){
-                    li[i].style.left=w+"px";
-                    li[now].style.left=0;
-                    animate(li[i],{left:0});
-                    animate(li[now],{left:-w});
+                    if (flag==false){return}
+                    else {
+                        flag=false;
+                        li[i].style.left=w+"px";
+                        li[now].style.left=0;
+                        animate(li[i],{left:0});
+                        animate(li[now],{left:-w},function () {
+                            flag=true
+                        });
+                    }
+
                 }
                 if (i<now){
-                    li[i].style.left="-296px";
-                    li[now].style.left=0;
-                    animate(li[i],{left:0});
-                    animate(li[now],{left:w});
+                    if (flag==false){return}
+                    else {
+                        flag=false;
+                        li[i].style.left="-296px";
+                        li[now].style.left=0;
+                        animate(li[i],{left:0});
+                        animate(li[now],{left:w},function () {
+                            flag=true;
+                        });
+                    }
                 }
                 next=now=i;
             }
