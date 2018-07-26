@@ -372,4 +372,71 @@ window.onload=function(){
  for (let i=0;i<4;i++){
       bian(i);
  }
+ let yy=document.querySelector(".yy");
+ let sp=yy.getElementsByTagName("span");
+ let big=document.querySelector(".big");
+ let w=getComputedStyle(big,null).left;
+ sp[0].onclick=function () {
+     let w=getComputedStyle(big,null).left;
+     console.log(w);
+     if( w=="-1240px"){
+         animate(big,{left:-253});
+         sp[0].style.color="black";
+
+     }
+     if(w=="-253px"){
+         animate(big,{left:0});
+         sp[0].style.color="#e0e0e0";
+
+     }
+    if(w=="-994px"){
+         animate(big,{left:0});
+         sp[0].style.color="#e0e0e0";
+
+     }
+     sp[1].style.color="black";
+ }
+ sp[1].onclick=function () {
+     let w=getComputedStyle(big,null).left;
+     console.log(w);
+    if( w=="0px"){
+        animate(big,{left:-994});
+        sp[1].style.color="black";
+
+    }
+     else if(w=="-994px"){
+        animate(big,{left:-1240});
+        sp[1].style.color="#e0e0e0";
+
+    }
+    else if(w=="-253px"){
+        animate(big,{left:-1240});
+        sp[1].style.color="#e0e0e0";
+
+    }
+     sp[0].style.color="black";
+ }
+ /*let inn=document.querySelector("input");
+ let txt=document.querySelector(".txt");
+ let bo=document.querySelector("body");
+ let pd=true;
+ setInterval(fun,1000);
+ function fun() {
+     if (pd==true){
+         $(".crk").click(function () {
+             $(".txt").hide();
+             pd=false;
+         });
+     } if(pd==false){
+         $(document).click(function () {
+             $(".txt").show();
+             pd=true;
+         });
+     }
+     console.log(pd);
+ }*/
+
+
+
+
 }
